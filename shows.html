@@ -36,12 +36,30 @@
         .back-button a:hover {
             background-color: #555;
         }
-        .gif-container {
+        .image-container {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .gif-container img {
-            width: 925px; /* Increased size */
-            height: auto; /* Maintain aspect ratio */
+        .image-container img {
+            width: 100%;
+            max-width: 1200px; /* Ensures the image doesn't get too large */
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px; /* Adjust title size for smaller screens */
+            }
+            .back-button a {
+                font-size: 12px; /* Adjust button size */
+                padding: 4px 10px;
+            }
+            .image-container img {
+                max-width: 90%; /* Reduce image width for smaller screens */
+            }
         }
     </style>
 </head>
@@ -50,9 +68,11 @@
 
     <h1>Shows</h1>
     <p>&nbsp;</p>   
+
     <h3>* Previous Shows</h3>
     <p>* April 27th, 2024 - College Park, Maryland</p>
     <p>&nbsp;</p> 
+
     <h3>* Upcoming Shows</h3>
     <p>* February 7th, 2025 - College Park, Maryland</p>
     <p>  Ticket link: <a href="https://posh.vip/e/post-college-park-revival-back-2-school?fbclid=PAZXh0bgNhZW0CMTEAAaYwzCGJ_knv2v3H4BIjHejjP2UlrQgLYRLwGMKS0U3tCGqyNoFiG1QuZT0_aem_Fj6yYp0uko6cz13JTrWNiw" style="color: white;" target="_blank">here</a></p>
@@ -63,8 +83,8 @@
         <a href="index.html">Back</a>
     </div>
 
-    <!-- GIF Section -->
-    <div class="gif-container">
+    <!-- Centered Image Section -->
+    <div class="image-container">
         <img src="img/balloon-gif.gif" alt="Heart Balloon GIF">
     </div>
 </body>

@@ -38,13 +38,28 @@
         }
         .image-container {
             margin-top: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .image-container img {
-            width: 400px; /* Adjusted size */
+            width: 100%;
+            max-width: 400px; /* Ensures the image doesn't get too large */
             height: auto;
-            border-radius: 1000px;
-            border: 1px solid rgb(2, 0, 0);
+            border-radius: 5px;
+            border: 1px solid white;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px; /* Adjust title size for smaller screens */
+            }
+            .back-button a {
+                font-size: 12px; /* Adjust button size */
+                padding: 4px 10px;
+            }
+            .image-container img {
+                max-width: 90%; /* Reduce image width for smaller screens */
+            }
         }
     </style>
 </head>
@@ -62,7 +77,6 @@
     <!-- Back Button -->
     <div class="back-button">
         <a href="index.html">Back</a>
-        <p>&nbsp;</p>
     </div>
 
     <!-- Centered Image Section -->

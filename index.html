@@ -38,17 +38,36 @@
         .nav a:hover {
             background-color: #555;
         }
-        .gif-container {
+        .image-container {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .gif-container img {
-            width: 925px; /* Increased size */
-            height: auto; /* Maintain aspect ratio */
+        .image-container img {
+            width: 100%;
+            max-width: 1200px; /* Ensures the image doesn't get too large */
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px; /* Adjust title size for smaller screens */
+            }
+            .nav a {
+                font-size: 12px; /* Adjust button size */
+                padding: 4px 10px;
+            }
+            .image-container img {
+                max-width: 90%; /* Reduce image width for smaller screens */
+            }
         }
     </style>
 </head>
 <body>
     <p>&nbsp;</p>
+
     <h1>Heartswings</h1>
 
     <!-- Navigation Bar -->
@@ -59,20 +78,19 @@
     </div>
 
     <p>&nbsp;</p>
-    <h3>* Coming February 14th, 2025</h3>
-    <p>* POST-PUNK // DC, NYC</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <h3>Coming February 14th, 2025</h3>
+    <p>POST-PUNK // DC, NYC</p>
     <p>&nbsp;</p>
 
-    <!-- GIF Section -->
-    <div class="gif-container">
+    <!-- Centered Image Section -->
+    <div class="image-container">
         <img src="img/balloon-gif.gif" alt="Heart Balloon GIF">
     </div>
 
     <!-- Audio Section -->
     <audio autoplay loop>
-        <source src="music/HS1.mp3" type="audio/mpeg">
+        <source src="music/HS1.wa" type="audio/mpeg">
+        
     </audio>
 </body>
 </html>
