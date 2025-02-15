@@ -8,7 +8,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Heartswings">
     <meta property="og:description" content="POST-PUNK // DC, NYC">
-    <meta property="og:image" content="https://heartswingsband.com/img/heart.jpg">
+    <meta property="og:image" content="https://heartswingsband.com/img/balloon-final.gif">
     <meta property="og:url" content="https://heartswingsband.com">
     <meta property="og:type" content="website">
 
@@ -21,15 +21,18 @@
             font-family: Courier, monospace;
         }
         h1 {
-            color: white;
             font-size: 60px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         h3 {
             color: #993300;
+            margin-bottom: 15px;
         }
         .nav {
-            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
         .nav a {
             color: white;
@@ -37,101 +40,139 @@
             padding: 5px 12px;
             display: inline-block;
             font-size: 14px;
-            border: 1px solid transparent;
             border-radius: 5px;
-            margin: 3px;
             background-color: #131111;
             transition: background-color 0.3s ease;
         }
         .nav a:hover {
             background-color: #555;
         }
-        .image-container {
+        .audio-player {
             margin-top: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            position: relative;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            display: none;
+            margin-top: 15px;
+        }
+        .progress, .volume-container {
+            width: 100%;
+            max-width: 300px;
+        }
+        .audio-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .image-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
         }
         .image-container img {
             width: 100%;
-            max-width: 800px;
+            max-width: 300px;
             height: auto;
             border-radius: 5px;
-            border: 1px solid rgb(0, 0, 0);
+        }
+        .album-art {
+            max-width: 300px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 32px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
             cursor: pointer;
         }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 40px;
-            }
-            .nav a {
-                font-size: 12px;
-                padding: 4px 10px;
-            }
-            .image-container img {
-                max-width: 90%;
-            }
+        .video-container {
+            margin: 40px auto;
         }
     </style>
 </head>
 <body>
-    <p>&nbsp;</p>
     <h1>Heartswings</h1>
-
-    <!-- Navigation Bar -->
+    <p>POST-PUNK // DC, NYC</p>
     <div class="nav">
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="shows.html">Shows</a>
     </div>
 
-    <p>&nbsp;</p>
-    <h3>Coming February 14th, 2025</h3>
-    <p>POST-PUNK // DC, NYC</p>
-    <p>&nbsp;</p>
+    <!-- Audio Player -->
+    <div class="audio-player">
+        <h3 class="audio-title">* Heartswings - White Pawn (Demo)</h3>
+        <div style="position: relative; display: inline-block;">
+            <img src="img/HS_HeadsTest1.png" alt="Album Art" class="album-art">
+            <button id="play-pause" class="play-button">▶</button>
+        </div>
+        <audio id="audio" src="music/WhitePawn_DemoRelease.wav"></audio>
+        <div class="controls" id="controls">
+            <input type="range" id="progress" class="progress" value="0" min="0" step="1">
+            <div class="volume-container">
+                🔊 <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+            </div>
+        </div>
+    </div>
 
-    <!-- Centered Image Section -->
+    <!-- Music Video -->
+    <h3>* Heartswings - Debut EP Show (Live)</h3>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/3Q_B8YAQTUY" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Floating Balloon Image -->
     <div class="image-container">
-        <img src="img/balloon-final.gif" alt="Heart Balloon GIF" id="play-sound">
+        <img src="img/balloon-final.gif" alt="Floating Balloon">
     </div>
 
     <script>
-        const sounds = [
-            'TTS/HEARTSWINGS - TTS VOICE 1.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 2.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 3.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 4.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 5.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 6.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 7.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 8.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 9.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 10.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 11.wav',
-            'TTS/HEARTSWINGS - TTS VOICE 12.wav'
-        ];
+        const audio = document.getElementById("audio");
+        const playPauseBtn = document.getElementById("play-pause");
+        const controls = document.getElementById("controls");
+        const progress = document.getElementById("progress");
+        const volume = document.getElementById("volume");
 
-        let currentAudio = null;
-
-    document.getElementById('play-sound').addEventListener('click', () => {
-    // Stop any currently playing audio
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-
-        // Select a random sound
-        const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-
-        // Create audio object
-        currentAudio = new Audio(randomSound);
-
-        // Mobile-friendly properties
-        currentAudio.playsInline = true; // For iOS Safari support
-
-        // Play the sound
-        currentAudio.play().catch(error => {
-            console.error('Playback failed:', error);
+        playPauseBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = "⏸";
+                controls.style.display = "flex";
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = "▶";
+                controls.style.display = "none";
+            }
         });
-    });
+
+        audio.addEventListener("timeupdate", () => {
+            progress.value = audio.currentTime;
+            progress.max = audio.duration;
+        });
+
+        progress.addEventListener("input", () => {
+            audio.currentTime = progress.value;
+        });
+
+        volume.addEventListener("input", () => {
+            audio.volume = volume.value;
+        });
     </script>
 </body>
 </html>
